@@ -120,9 +120,9 @@ class RepulsorFieldPlanner:
         # Keep things slow right when the goal changes
         self.startSlowFactor = 0.0
 
-        #addLog("PotentialField Num Obstacles", lambda: (len(self.fixedObstacles) + len(self.transientObstcales)))
-        #addLog("PotentialField Path Active", lambda: (self.goal is not None))
-        #addLog("PotentialField DistToGo", lambda: self.distToGo, "m")
+        addLog("PotentialField Num Obstacles", lambda: (len(self.fixedObstacles) + len(self.transientObstcales)))
+        addLog("PotentialField Path Active", lambda: (self.goal is not None))
+        addLog("PotentialField DistToGo", lambda: self.distToGo, "m")
 
     def setGoal(self, nextGoal:Pose2d|None):
         """

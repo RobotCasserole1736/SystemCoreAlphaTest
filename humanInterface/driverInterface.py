@@ -37,12 +37,11 @@ class DriverInterface:
         self.gyroResetCmd = False
 
         # Logging
-        #addLog("DI FwdRev Cmd", lambda: self.velXCmd, "mps")
-        #addLog("DI Strafe Cmd", lambda: self.velYCmd, "mps")
-        #addLog("DI Rot Cmd", lambda: self.velTCmd, "radps")
-        #addLog("DI gyroResetCmd", lambda: self.gyroResetCmd, "bool")
-        #addLog("DI autoDriveToSpeaker", lambda: self.autoDriveToSpeaker, "bool")
-        #addLog("DI autoDriveToPickup", lambda: self.autoDriveToPickup, "bool")
+        addLog("DI FwdRev Cmd", lambda: self.velXCmd, "mps")
+        addLog("DI Strafe Cmd", lambda: self.velYCmd, "mps")
+        addLog("DI Rot Cmd", lambda: self.velTCmd, "radps")
+        addLog("DI gyroResetCmd", lambda: self.gyroResetCmd, "bool")
+        addLog("DI autoDriveCmd", lambda: self.autoDrive, "bool")
 
     def update(self):
         # value of contoller buttons
