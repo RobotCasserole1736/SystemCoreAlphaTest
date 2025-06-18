@@ -45,14 +45,14 @@ class RIOMonitor:
         addLog("RIO Supply Voltage", RobotController.getInputVoltage, "V")
         addLog("RIO CAN Bus Usage", lambda: self.CANBusUsage, "pct")
         addLog(
-        #    "RIO CAN Bus Err Count",
-        #     lambda: self.CANErrCount,
-        #    "count",
-        #)
-        addLog("RIO Memory Usage", lambda: self.memUsagePct , "pct")
-        addLog("RIO Internal Disk Usage", lambda: self.intDiskUsage, "pct")
-        addLog(f"RIO USB Disk Usage",lambda: self.extDiskUsage, "pct")
-        addLog("RIO CPU Load",lambda: self.cpuLoad , "pct")
+            "RIO CAN Bus Err Count",
+             lambda: self.CANErrCount,
+            "count",
+        )
+        #addLog("RIO Memory Usage", lambda: self.memUsagePct , "pct")
+        #addLog("RIO Internal Disk Usage", lambda: self.intDiskUsage, "pct")
+        #addLog(f"RIO USB Disk Usage",lambda: self.extDiskUsage, "pct")
+        #addLog("RIO CPU Load",lambda: self.cpuLoad , "pct")
 
 
 
@@ -65,6 +65,7 @@ class RIOMonitor:
     def _updateFast(self):
         while self.runCmd:
             self._updateVoltages()
+            self._updateCANStats()
             time.sleep(1.0)
 
     # Things that don't have to be updated as fast
@@ -73,8 +74,6 @@ class RIOMonitor:
             self._updateMemStats()
             time.sleep(1.0)
             self._updateCPUStats()
-            time.sleep(1.0)
-            self._updateCANStats()
             time.sleep(1.0)
             self._updateDiskStats()
             time.sleep(1.0)
