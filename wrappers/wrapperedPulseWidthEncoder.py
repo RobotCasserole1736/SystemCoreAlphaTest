@@ -38,29 +38,26 @@ class WrapperedPulseWidthEncoder:
         self.maxPulseTimeSec = maxPulse
         self.minAcceptableFreq = minAcceptableFreq
 
-        self.freq = 0
         self.pulseTime = 0
 
-        addLog(f"{self.name}_freq", lambda: self.freq, "Hz")
         addLog(f"{self.name}_pulseTime", lambda: self.pulseTime, "sec")
         addLog(f"{self.name}_angle", lambda: self.curAngleRad, "rad")
 
     def update(self):
         """Return the raw angle reading from the sensor in radians"""
-        self.freq = self.dutyCycle.getFrequency()
+        self.pulseTime = self.dutyCycle.getHighTimeNanoseconds() * 1E-9  # Convert to seconds
+
         self.faulted = (
-            self.freq < self.minAcceptableFreq
+            self.pulseTime == 0.0 or
+            self.pulseTime > 1.0/self.minAcceptableFreq
         )  # abnormal frequency, we must be faulted
         self.disconFault.set(self.faulted)
 
         if self.faulted:
             # Faulted - don't do any processing
             self.pulseTime = -1
-            rawAngle = 0.0
-            self.curAngleRad = 0.0
         else:
             # Not-Faulted - read the raw angle from the pulse width
-            self.pulseTime = self.dutyCycle.getOutput() * (1.0 / self.freq)
             rawAngle = (
                 (
                     (self.pulseTime - self.minPulseTimeSec)
