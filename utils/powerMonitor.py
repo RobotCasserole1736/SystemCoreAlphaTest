@@ -59,7 +59,7 @@ class PowerMonitor:
     Wrapper class to log electrical statistics on robot usage
     """
     def __init__(self):
-        self.powerDist = wpilib.PowerDistribution()
+        self.powerDist = wpilib.PowerDistribution(0)
         addLog("Battery current draw",self.powerDist.getTotalCurrent, "A")
         addLog("RIO Voltage",wpilib.RobotController.getBatteryVoltage, "V")
         addLog("Battery voltage", wpilib.RobotController.getInputVoltage, "V")

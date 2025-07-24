@@ -87,10 +87,11 @@ class DrivetrainControl(metaclass=Singleton):
         self.curCmd = AutoDrive().update(self.curCmd, curEstPose)
 
         # Transform the current command to be robot relative
-        tmp = ChassisSpeeds.fromFieldRelativeSpeeds(
-            self.curCmd.velX, self.curCmd.velY, self.curCmd.velT, curEstPose.rotation()
+        cmdSpd = ChassisSpeeds(self.curCmd.velX, self.curCmd.velY, self.curCmd.velT)
+        chassisCmdSpd = cmdSpd.toRobotRelative(
+             curEstPose.rotation()
         )
-        self.desChSpd = _discretizeChSpd(tmp)
+        self.desChSpd = _discretizeChSpd(chassisCmdSpd)
 
         # Set the desired pose for telemetry purposes
         self.poseEst._telemetry.setDesiredPose(self.curCmd.desPose)

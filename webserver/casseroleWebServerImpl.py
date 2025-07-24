@@ -7,7 +7,7 @@ import json
 
 # These imports are mostly just to make sure we put versions on the webpage
 import wpilib
-import rev
+#import rev
 from photonlibpy import version
 
 from utils.extDriveManager import ExtDriveManager
@@ -83,7 +83,8 @@ class CasseroleWebServerImpl(SimpleHTTPRequestHandler):
 
         deployText += f"Python - {platform.python_version()} - {sys.executable} \n"
         deployText += f"WPILib - {wpilib.version.version} \n"
-        deployText += f"REV - {rev.version.version} \n"
+        #deployText += f"REV - {rev.version.version} \n"
+        deployText += f"REV - NOT YET RELEASED\n"
         deployText += f"PhotonVision - {version.PHOTONLIB_VERSION} \n"
         deployText += f"Working Dir - {os.getcwd()}\n"
 

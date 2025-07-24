@@ -24,7 +24,7 @@ class WrapperedPulseWidthEncoder:
         maxPulse,
         minAcceptableFreq,
     ):
-        self.dutyCycle = DutyCycle(DigitalInput(port))
+        self.dutyCycle = DutyCycle(port)
         self.name = f"Encoder_{name}"
         self.disconFault = Fault(f"{self.name} DIO port {port} disconnected")
         self.mountOffsetCal = Calibration(
@@ -45,7 +45,7 @@ class WrapperedPulseWidthEncoder:
 
     def update(self):
         """Return the raw angle reading from the sensor in radians"""
-        self.pulseTime = self.dutyCycle.getHighTimeNanoseconds() * 1E-9  # Convert to seconds
+        self.pulseTime = self.dutyCycle.getHighTime() # in seconds
 
         self.faulted = (
             self.pulseTime == 0.0 or

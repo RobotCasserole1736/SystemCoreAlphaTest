@@ -10,3 +10,10 @@ Codebase for the 2025 SystemCore Alpha test. This codebase is targeted at our Pr
 6) Repulsor-field on-the-fly navigation
 7) A vertically-mounted RIO
 
+
+# Notes
+
+At least as of 7/24 - 
+
+1) Rev not yet released, so it's removed
+2) CTRE has done a one-off release of wheels - https://ctre.download/files/Phoenix%206%2025.90.0a1%20Python%20Wheels.zip - need to be downloaded and installed

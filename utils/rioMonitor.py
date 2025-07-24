@@ -13,9 +13,7 @@ class RIOMonitor:
         """
         Records faults and runtime metrics for the roboRIO.
         """
-        self.railFault5v = Fault("RIO 5V (DIO) rail faulted")
         self.railFault3p3v = Fault("RIO 3.3V rail faulted")
-        self.railFault6v = Fault("RIO 6V (PWM) rail faulted")
 
         # CPU Stats - remember last time metrics
         self.prevUserTime = 0
@@ -102,7 +100,7 @@ class RIOMonitor:
                             self.extDiskUsage = pctUsed
 
     def _updateCANStats(self):
-        status = RobotController.getCANStatus()
+        status = RobotController.getCANStatus(0)
         self.CANBusUsage = status.percentBusUtilization
         self.CANErrCount = status.txFullCount + status.receiveErrorCount + status.transmitErrorCount
 
@@ -111,8 +109,6 @@ class RIOMonitor:
     def _updateVoltages(self):
         if not RobotController.isBrownedOut():
             self.railFault3p3v.set(not RobotController.getEnabled3V3())
-            self.railFault5v.set(not RobotController.getEnabled5V())
-            self.railFault6v.set(not RobotController.getEnabled6V())
 
     def _updateCPUStats(self):
         if RobotBase.isReal():

@@ -1,9 +1,9 @@
 import random
 
-from wpilib import ADIS16470_IMU
 import wpilib
 from wpimath.estimator import SwerveDrive4PoseEstimator
 from wpimath.geometry import Pose2d, Rotation2d, Twist2d
+from wpilib import OnboardIMU
 from drivetrain.drivetrainPhysical import (
     kinematics,
     ROBOT_TO_LEFTFRONT_CAM,
@@ -38,8 +38,7 @@ class DrivetrainPoseEstimator:
 
         # Gyroscope - measures our rotational velocity.
         # Fairly accurate and trustworthy, but not a full pose estimate
-        self._gyro = ADIS16470_IMU()
-        self._gyroDisconFault = Fault("Gyroscope not sending data")
+        self._gyro = OnboardIMU(OnboardIMU.MountOrientation.kFlat)
         self._curRawGyroAngle = Rotation2d()
 
         # Cameras - measure our position on the field from apriltags
@@ -111,7 +110,6 @@ class DrivetrainPoseEstimator:
 
 
         # Read the gyro angle
-        self._gyroDisconFault.set(not self._gyro.isConnected())
         if wpilib.TimedRobot.isSimulation():
             # Simulated Gyro
             # Simulate an angle based on (simulated) motor speeds with some noise
@@ -154,4 +152,4 @@ class DrivetrainPoseEstimator:
     # Local helper to wrap the real hardware angle into a Rotation2d
     def _getGyroAngle(self)->Rotation2d:
         #ha, the rio (and consequently gyro) is mounted vertically
-        return Rotation2d().fromDegrees(self._gyro.getAngle(self._gyro.getPitchAxis()))
+        return self._gyro.getRotation2d()

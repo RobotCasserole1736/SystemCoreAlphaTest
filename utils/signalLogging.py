@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Callable
 import wpilib
 import ntcore as nt
-import wpiutil.log as wpilog  # pylint: disable=import-error,no-name-in-module
+import wpilog
 from utils.extDriveManager import ExtDriveManager
 from utils.singleton import Singleton
 

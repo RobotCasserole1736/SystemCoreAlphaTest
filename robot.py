@@ -35,10 +35,6 @@ class MyRobot(wpilib.TimedRobot):
 
         self.crashLogger = CrashLogger()
 
-        # We do our own logging, we don't need additional logging in the background.
-        # Both of these will increase CPU load by a lot, and we never use their output.
-        wpilib.LiveWindow.disableAllTelemetry()
-
         self.webserver = Webserver()
 
         self.driveTrain = DrivetrainControl()
@@ -172,7 +168,7 @@ class MyRobot(wpilib.TimedRobot):
     #########################################################
     ## Test-Specific init and update
     def testInit(self):
-        wpilib.LiveWindow.setEnabled(False)
+        pass
 
     def testPeriodic(self):
         pass
