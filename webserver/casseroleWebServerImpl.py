@@ -75,7 +75,7 @@ class CasseroleWebServerImpl(SimpleHTTPRequestHandler):
                 deployText += f"Source Project: { data['code-path'] } \n"
                 deployText += f"Git Commit: { data['git-desc'] } \n"
                 deployText += f"Git Branch: { data['git-branch'] } \n"
-            deployText += f"RIO FPGA Sw: v{wpilib.RobotController.getFPGAVersion()} r{wpilib.RobotController.getFPGARevision()} \n"
+            #deployText += f"RIO FPGA Sw: v{wpilib.RobotController.getFPGAVersion()} r{wpilib.RobotController.getFPGARevision()} \n"
             deployText += (
                 f"RIO Serial Number:{wpilib.RobotController.getSerialNumber()} \n"
             )

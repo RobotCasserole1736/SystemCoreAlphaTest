@@ -100,15 +100,22 @@ class RIOMonitor:
                             self.extDiskUsage = pctUsed
 
     def _updateCANStats(self):
-        status = RobotController.getCANStatus(0)
-        self.CANBusUsage = status.percentBusUtilization
-        self.CANErrCount = status.txFullCount + status.receiveErrorCount + status.transmitErrorCount
+        pass
+        # Not yet implemented in HAL
+        #status = RobotController.getCANStatus(0)
+        #self.CANBusUsage = status.percentBusUtilization
+        #self.CANErrCount = status.txFullCount + status.receiveErrorCount + status.transmitErrorCount
 
 
 
     def _updateVoltages(self):
-        if not RobotController.isBrownedOut():
-            self.railFault3p3v.set(not RobotController.getEnabled3V3())
+        pass
+        # Both of these currently unimplemented in HAL which is fine.
+        # Longer term, I have to wonder if they will be needed - the main reason
+        # this was here was to have a single spot where all faults were annunciated.
+        # SystemCore might have this built in
+        #if not RobotController.isBrownedOut():
+            #self.railFault3p3v.set(not RobotController.getEnabled3V3())
 
     def _updateCPUStats(self):
         if RobotBase.isReal():

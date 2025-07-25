@@ -6,7 +6,7 @@
     "configurations": [
         
         {
-            "name": "Debug RoboRIO",
+            "name": "Debug SystemCore",
             "type": "python",
             "request": "attach",
             "connect": {
@@ -16,7 +16,7 @@
             "pathMappings": [
                 {
                     "localRoot": "${workspaceFolder}",
-                    "remoteRoot": "/home/lvuser/py"
+                    "remoteRoot": "/home/systemcore/py"
                 }
             ],
             "justMyCode": false,
