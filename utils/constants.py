@@ -32,35 +32,15 @@ DT_BL_AZMTH_CANID = 9
 # Unused_CANID = 16
 
 
-
-
 #######################################################################################
-## PWM Bank
-#######################################################################################
-
-SHOOTER_EJCT_PWM = 0
-SHOOTER_INT_PWM = 1
-# Unused = 2
-# Unused = 3
-# Unused = 4
-# Unused = 5
-# Unused = 6
-# Unused = 7
-# Unused = 8
-LED_STACK_LIGHT_CTRL_PWM = 9
-
-
-#######################################################################################
-## DIO Bank
+## SmartIO Bank
 #######################################################################################
 
 DT_BR_AZMTH_ENC_PORT = 0
 DT_FL_AZMTH_ENC_PORT = 1
 DT_BL_AZMTH_ENC_PORT = 2
 DT_FR_AZMTH_ENC_PORT = 3
-# Unused = 4
-# Unused = 5
-# Unused = 6
-# Unused = 7
-FIX_ME_LED_PIN = 8
-HEARTBEAT_LED_PIN = 9
+BALL_SHOOTER_OUT_LEFT = 4
+BALL_SHOOTER_OUT_RIGHT = 5
+# FIX_ME_LED_PIN = 8 # TODO We are out of ports :(
+# HEARTBEAT_LED_PIN = 9 # TODO We are out of ports :(

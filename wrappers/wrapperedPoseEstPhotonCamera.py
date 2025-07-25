@@ -2,8 +2,8 @@ from dataclasses import dataclass
 import wpilib
 from wpimath.units import feetToMeters, degreesToRadians
 from wpimath.geometry import Pose2d
-from photonlibpy.photonCamera import PhotonCamera
-from photonlibpy.photonCamera import setVersionCheckEnabled
+#from photonlibpy.photonCamera import PhotonCamera
+#from photonlibpy.photonCamera import setVersionCheckEnabled
 from utils.fieldTagLayout import FieldTagLayout
 from utils.faults import Fault
 
@@ -21,6 +21,10 @@ class CameraPoseObservation:
 # 3 - Handle recording latency of when the image was actually seen
 class WrapperedPoseEstPhotonCamera:
     def __init__(self, camName, robotToCam):
+        self.robotToCam = robotToCam
+
+        return # NOT YET SUPPORTED
+
         setVersionCheckEnabled(False)
 
         self.cam = PhotonCamera(camName)
@@ -28,11 +32,11 @@ class WrapperedPoseEstPhotonCamera:
         self.disconFault = Fault(f"Camera {camName} not sending data")
         self.timeoutSec = 1.0
         self.poseEstimates:list[CameraPoseObservation] = []
-        self.robotToCam = robotToCam
 
     def update(self, prevEstPose:Pose2d):
 
         self.poseEstimates = []
+        return # NOT YET SUPPORTED
 
         if(not self.cam.isConnected()):
             # Faulted - no estimates, just return.

@@ -1,6 +1,6 @@
 
 import wpilib
-from utils.constants import SHOOTER_EJCT_PWM, SHOOTER_INT_PWM
+from utils.constants import BALL_SHOOTER_OUT_LEFT, BALL_SHOOTER_OUT_RIGHT
 from utils.signalLogging import addLog
 from utils.singleton import Singleton
 
@@ -9,8 +9,8 @@ class BallShooterControl(metaclass=Singleton):
     def __init__(self):
         self.intakeCommandState = False
         self.ejectCommandState = False
-        self.shooterRMotor = wpilib.Spark(1)
-        self.shooterLMotor = wpilib.Spark(0)
+        self.shooterRMotor = wpilib.Spark(BALL_SHOOTER_OUT_LEFT)
+        self.shooterLMotor = wpilib.Spark(BALL_SHOOTER_OUT_RIGHT)
 
         addLog("Algae Manipulator intake cmd",lambda:self.intakeCommandState,"Bool")
         addLog("Algae Manipulator  cmd",lambda:self.ejectCommandState,"Bool")

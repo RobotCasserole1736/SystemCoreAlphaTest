@@ -1,5 +1,5 @@
 from wpilib import PWMMotorController
-from utils.constants import LED_STACK_LIGHT_CTRL_PWM
+#from utils.constants import LED_STACK_LIGHT_CTRL_PWM
 from utils.singleton import Singleton
 from wpimath.filter import Debouncer
 
@@ -24,7 +24,7 @@ class LEDControl(metaclass=Singleton):
         self._isAutoDrive = False
         self._isStuck = False
         self.stuckDebounce = Debouncer(0.3, Debouncer.DebounceType.kFalling)
-        self.ledPWMOutput = PWMMotorController("LEDCtrl", LED_STACK_LIGHT_CTRL_PWM)
+        #self.ledPWMOutput = PWMMotorController("LEDCtrl", LED_STACK_LIGHT_CTRL_PWM) #TODO - out of pins
 
     def update(self):
         """
@@ -40,7 +40,8 @@ class LEDControl(metaclass=Singleton):
         else:
             pwmVal = GREEN
 
-        self.ledPWMOutput.set(pwmVal)
+        # TODO - we are out of pins
+        #self.ledPWMOutput.set(pwmVal)
 
     def setAutoDrive(self, isAutoDrive:bool):
         """

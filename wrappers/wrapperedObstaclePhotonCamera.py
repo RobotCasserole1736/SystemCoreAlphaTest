@@ -1,14 +1,15 @@
 import wpilib
 from wpimath.geometry import Pose2d, Transform3d, Rotation2d, Translation2d, Transform2d
 from wpimath.units import degreesToRadians
-from photonlibpy.photonCamera import PhotonCamera
-from photonlibpy.photonCamera import setVersionCheckEnabled
+#from photonlibpy.photonCamera import PhotonCamera
+#from photonlibpy.photonCamera import setVersionCheckEnabled
 from utils.faults import Fault
 import math
 
 
 class CameraObstacleObservation:
     def __init__(self, time:float, estFieldPose:Pose2d, trustworthiness=1.0):
+        return # NOT YET SUPPORTED
         self.time = time
         self.estFieldPose = estFieldPose
         self.trustworthiness = trustworthiness  # TODO - not used yet
@@ -55,6 +56,8 @@ class WrapperedObstaclePhotonCamera:
     3 - Handle recording latency of when the image was actually seen
     """
     def __init__(self, camName, robotToCam:Transform3d):
+        return # NOT YET SUPPORTED
+
         setVersionCheckEnabled(False)
 
         self.cam = PhotonCamera(camName)
@@ -67,6 +70,8 @@ class WrapperedObstaclePhotonCamera:
     def update(self):
 
         self.obstacleEstimates = []
+        return # NOT YET SUPPORTED
+
 
         if(not self.cam.isConnected()):
             # Faulted - no estimates, just return.

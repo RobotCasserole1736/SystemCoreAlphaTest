@@ -18,18 +18,17 @@ robotpy_extras = [
     # "navx"
     # "pathplannerlib"
     # "phoenix5",
-    # "phoenix6",
+    # "phoenix6", #Not yet, needs manual install
     # "playingwithfusion"
-    #"rev",
+    #"rev", # Needed, but not yet supported
     # "romi"
     # "sim"
 ]
 
 # Other pip packages to install
 requires = [
-    #"photonlibpy",
+    #"photonlibpy", #Not yet supported
     "debugpy",
     "numpy",
-    "phoenix6",
-    #"sleipnirgroup-choreolib"
+    "sleipnirgroup-choreolib"
 ]

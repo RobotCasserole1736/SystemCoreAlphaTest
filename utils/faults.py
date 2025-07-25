@@ -1,7 +1,7 @@
 import math
 import wpilib
 
-from utils.constants import FIX_ME_LED_PIN, HEARTBEAT_LED_PIN
+#from utils.constants import FIX_ME_LED_PIN, HEARTBEAT_LED_PIN
 from utils.singleton import Singleton
 
 
@@ -66,27 +66,31 @@ class FaultStatusLEDs(metaclass=Singleton):
     Unless you want the pit crew to stop and fix the robot, DON'T blink the fix-me light.
     """
     def __init__(self):
-        self.fixMeLED = wpilib.DigitalOutput(FIX_ME_LED_PIN)
-        self.fixMeLED.setPWMRate(500.0)
-        self.fixMeLED.enablePWM(
-            1.0
-        )  # Initially should be just "ON" until the first call to update
+        pass
+        # TODO - not enough pins
+        #self.fixMeLED = wpilib.DigitalOutput(FIX_ME_LED_PIN)
+        #self.fixMeLED.setPWMRate(500.0)
+        #self.fixMeLED.enablePWM(
+        #    1.0
+        #)  # Initially should be just "ON" until the first call to update
 
-        self.heartbeatLED = wpilib.DigitalOutput(HEARTBEAT_LED_PIN)
-        self.heartbeatLED.setPWMRate(500.0)
-        self.heartbeatLED.enablePWM(
-            1.0
-        )  # Initially should be just "ON" until the first call to update
+        # TODO - not enough pins
+        #self.heartbeatLED = wpilib.DigitalOutput(HEARTBEAT_LED_PIN)
+        #self.heartbeatLED.setPWMRate(500.0)
+        #self.heartbeatLED.enablePWM(
+        #    1.0
+        #)  # Initially should be just "ON" until the first call to update
 
     def update(self):
         # Update faults LED
-        if FaultWrangler().activeFaultCount > 0:
-            self.fixMeLED.updateDutyCycle(self._blinkPattern(1.3))
-        else:
-            self.fixMeLED.updateDutyCycle(0.0)
+        #if FaultWrangler().activeFaultCount > 0:
+        #    self.fixMeLED.updateDutyCycle(self._blinkPattern(1.3))
+        #else:
+        #    self.fixMeLED.updateDutyCycle(0.0)
 
         # Update heartbeat LED
-        self.heartbeatLED.updateDutyCycle(self._blinkPattern(0.75))
+        #self.heartbeatLED.updateDutyCycle(self._blinkPattern(0.75))
+        pass
 
     # Returns a time-varying blink intensity to drive the LED
     # at a given frequency
