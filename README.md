@@ -13,7 +13,6 @@ Codebase for the 2025 SystemCore Alpha test. This codebase is targeted at our Pr
 
 # Notes
 
-At least as of 7/24 - 
+At least as of 7/25 - 
 
-1) Rev not yet released, so it's removed
-2) CTRE has done a one-off release of wheels - https://ctre.download/files/Phoenix%206%2025.90.0a1%20Python%20Wheels.zip - need to be downloaded and installed
+1) CTRE has done a one-off release of wheels - https://ctre.download/files/Phoenix%206%2025.90.0a1%20Python%20Wheels.zip - need to be downloaded and installed

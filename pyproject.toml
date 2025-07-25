@@ -20,7 +20,7 @@ robotpy_extras = [
     # "phoenix5",
     # "phoenix6", #Not yet, needs manual install
     # "playingwithfusion"
-    #"rev", # Needed, but not yet supported
+    "rev", 
     # "romi"
     # "sim"
 ]

@@ -1,4 +1,4 @@
-#from rev import SparkMax, SparkBase, SparkMaxConfig, REVLibError, ClosedLoopSlot, SparkBaseConfig, ClosedLoopConfig, SparkClosedLoopController
+from rev import SparkMax, SparkBase, SparkMaxConfig, REVLibError, ClosedLoopSlot, SparkBaseConfig, ClosedLoopConfig, SparkClosedLoopController
 from wpilib import TimedRobot
 from utils.signalLogging import addLog
 from utils.units import rev2Rad, rad2Rev, radPerSec2RPM, RPM2RadPerSec
@@ -15,7 +15,6 @@ import time
 # Fault annunication logic to trigger warnings if a motor couldn't be configured
 class WrapperedSparkMax:
     def __init__(self, canID, name, brakeMode=False, currentLimitA=40.0):
-        return # not yet working
         self.ctrl = SparkMax(canID, SparkMax.MotorType.kBrushless)
         self.closedLoopCtrl = self.ctrl.getClosedLoopController()
         self.encoder = self.ctrl.getEncoder()
@@ -69,15 +68,13 @@ class WrapperedSparkMax:
 
 
     def setInverted(self, isInverted):
-        return # not yet working
         if self.configSuccess:
             self.cfg.inverted(isInverted)
             self.ctrl.configure(self.cfg,
                                 SparkBase.ResetMode.kNoResetSafeParameters, 
                                 SparkBase.PersistMode.kPersistParameters)
 
-    def setPID(self, kP, kI, kD, persist=None):
-        return # not yet working
+    def setPID(self, kP, kI, kD, persist=SparkBase.PersistMode.kPersistParameters):
         if self.configSuccess:
             self.cfg.closedLoop.pid(kP, kI, kD, ClosedLoopSlot.kSlot0)
             # Apply new configuration
@@ -91,7 +88,6 @@ class WrapperedSparkMax:
                                 persist)
             
     def setPosCmd(self, posCmd, arbFF=0.0):
-        return # not yet working
         """_summary_
 
         Args:
@@ -118,7 +114,6 @@ class WrapperedSparkMax:
 
 
     def setVelCmd(self, velCmd, arbFF=0.0):
-        return # not yet working
         """_summary_
 
         Args:
@@ -140,13 +135,11 @@ class WrapperedSparkMax:
             self.disconFault.set(err != REVLibError.kOk)
 
     def setVoltage(self, outputVoltageVolts):
-        return # not yet working
         self.desVolt = outputVoltageVolts
         if self.configSuccess:
             self.ctrl.setVoltage(outputVoltageVolts)
 
     def getMotorPositionRad(self):
-        return 0 # not yet working
 
         if(TimedRobot.isSimulation()):
             pos = self.simActPos
@@ -159,7 +152,6 @@ class WrapperedSparkMax:
         return pos
 
     def getMotorVelocityRadPerSec(self):
-        return 0 # not yet working
         if self.configSuccess:
             vel = self.encoder.getVelocity()
         else:
