@@ -15,7 +15,7 @@ import time
 # Fault annunication logic to trigger warnings if a motor couldn't be configured
 class WrapperedSparkMax:
     def __init__(self, canID, name, brakeMode=False, currentLimitA=40.0):
-        self.ctrl = SparkMax(canID, SparkMax.MotorType.kBrushless)
+        self.ctrl = SparkMax(0,canID, SparkMax.MotorType.kBrushless)
         self.closedLoopCtrl = self.ctrl.getClosedLoopController()
         self.encoder = self.ctrl.getEncoder()
         self.name = name
