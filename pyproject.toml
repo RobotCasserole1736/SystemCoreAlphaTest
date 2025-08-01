@@ -31,5 +31,6 @@ requires = [
     "numpy",
     "sleipnirgroup-choreolib",
     "robotpy-rev==2027.0.0.a1", 
+    "phoenix6==25.90.0a1"
 
 ]
