@@ -15,7 +15,7 @@ from utils.faults import Fault
 class WrapperedKraken:
     def __init__(self, canID, name, brakeMode=False, currentLimitA=40.0):
         SignalLogger.enable_auto_logging(False)
-        self.ctrl = hardware.TalonFX(canID, "rio")
+        self.ctrl = hardware.TalonFX(canID, "can_s0")
         self.name = name
         self.configSuccess = False
         self.disconFault = Fault(f"Kraken {name} ID {canID} disconnected")
