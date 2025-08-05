@@ -2,6 +2,7 @@ import random
 
 import wpilib
 from wpimath.estimator import SwerveDrive4PoseEstimator
+from phoenix6 import hardware
 from wpimath.geometry import Pose2d, Rotation2d, Twist2d
 from wpilib import OnboardIMU
 from drivetrain.drivetrainPhysical import (
@@ -38,7 +39,8 @@ class DrivetrainPoseEstimator:
 
         # Gyroscope - measures our rotational velocity.
         # Fairly accurate and trustworthy, but not a full pose estimate
-        self._gyro = OnboardIMU(OnboardIMU.MountOrientation.kFlat)
+        self._gyroOnboard = OnboardIMU(OnboardIMU.MountOrientation.kFlat)
+        self._gyroCTRE = hardware.Pigeon2(5, "can_s4")
         self._curRawGyroAngle = Rotation2d()
 
         # Cameras - measure our position on the field from apriltags
@@ -64,6 +66,8 @@ class DrivetrainPoseEstimator:
         # Logging and Telemetry
         addLog("PE Vision Targets Seen", lambda: self._camTargetsVisible, "bool")
         addLog("PE Gyro Angle", lambda:(self._curRawGyroAngle.degrees()), "deg")
+        addLog("PE Onboard Gyro Angle", lambda:(self._gyroOnboard.getRotation2d().degrees()), "deg")
+        addLog("PE CTRE Pigeon2 Gyro Angle", lambda:(self._gyroCTRE.getRotation2d().degrees()), "deg")
         self._telemetry = DrivetrainPoseTelemetry()
 
         # Simulation Only - maintain a rough estimate of pose from velocities
@@ -81,6 +85,9 @@ class DrivetrainPoseEstimator:
         if wpilib.TimedRobot.isSimulation():
             self._simPose = knownPose
             self._curRawGyroAngle = knownPose.rotation()
+
+        self._gyroCTRE.reset()
+        self._gyroOnboard.resetYaw()
 
         self._poseEst.resetPosition(
             self._curRawGyroAngle, self._lastModulePositions, knownPose
@@ -152,4 +159,4 @@ class DrivetrainPoseEstimator:
     # Local helper to wrap the real hardware angle into a Rotation2d
     def _getGyroAngle(self)->Rotation2d:
         #ha, the rio (and consequently gyro) is mounted vertically
-        return self._gyro.getRotation2d()
+        return self._gyroOnboard.getRotation2d()
